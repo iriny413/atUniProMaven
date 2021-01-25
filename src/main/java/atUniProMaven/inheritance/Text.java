@@ -2,11 +2,7 @@ package atUniProMaven.inheritance;
 
 public class Text extends BaseMessage {
 
-  private boolean copyRightProtected = true;
-
-  private static final String POST = "Post";
-  private static final String REPOST = "Repost";
-  private static final String COMMENT = "Comment";
+  private boolean copyRightProtected;
 
 
   public Text(String author, String date, String message, String messageType, boolean copyRightProtected) {
@@ -15,7 +11,7 @@ public class Text extends BaseMessage {
   }
 
   @Override
-  String maxMessageSizeInMb(int size) {
+  public String maxMessageSizeInMb(int size) {
     String result = size + " Mb";
     System.out.println("Size of text: " + result);
     return result;
@@ -23,7 +19,7 @@ public class Text extends BaseMessage {
 
 
   @Override
-  void displayContent() {
+  public void displayContent() {
     super.displayContent();
     System.out.println("Copy right: " + copyRightProtected);
   }

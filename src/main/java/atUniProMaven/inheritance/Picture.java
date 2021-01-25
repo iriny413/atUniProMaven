@@ -15,19 +15,19 @@ public class Picture extends Media {
   }
 
   @Override
-  java.lang.String maxMessageSizeInMb(int size) {
+  public String maxMessageSizeInMb(int size) {
     return super.maxMessageSizeInMb(size);
   }
 
 
   @Override
-  void displayContent() {
+  public void displayContent() {
     super.displayContent();
     System.out.println("Picture's length: " + length + "; width: " + width + "; diagonal: " + diagonal);
   }
 
 
-  int square(int length, int width) {
+  public int square(int length, int width) {
     int result = length * width;
     System.out.println("Picture's square: " + result);
     return result;

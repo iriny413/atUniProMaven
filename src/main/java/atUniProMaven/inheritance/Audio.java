@@ -2,7 +2,7 @@ package atUniProMaven.inheritance;
 
 public class Audio extends Media {
 
-  boolean highQualityFormat = false;
+  boolean highQualityFormat;
 
 
   public Audio(String author, String date, String message, String messageType, int size, boolean highQualityFormat) {
@@ -12,19 +12,19 @@ public class Audio extends Media {
 
 
   @Override
-  String maxMessageSizeInMb(int size) {
+  public String maxMessageSizeInMb(int size) {
     String result = size + " Mb";
     System.out.println("Size of audio: " + result);
     return result;
   }
 
   @Override
-  void displayContent() {
+  public void displayContent() {
     super.displayContent();
     System.out.println("High Quality Format: " + highQualityFormat);
   }
 
-  void isHighQualityFormat(boolean value) {
+  public void isHighQualityFormat(boolean value) {
     if(value) {
       System.out.println("Audio format is high quality");
     } else {

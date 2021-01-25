@@ -10,17 +10,17 @@ public class Video extends Media {
   }
 
   @Override
-  String maxMessageSizeInMb(int size) {
+  public String maxMessageSizeInMb(int size) {
     return super.maxMessageSizeInMb(size);
   }
 
   @Override
-  void displayContent() {
+  public void displayContent() {
     super.displayContent();
     System.out.println("Video format: " + format);
   }
 
-  boolean isVideoFormatAcceptable(String format) {
+  public boolean isVideoFormatAcceptable(String format) {
     boolean result;
     if(format.equals("MP4") || format.equals("AVI")) {
       System.out.println("Video format is acceptable");
