@@ -3,11 +3,11 @@ package atUniProMaven.inheritance;
 public class Main {
   public static void main(String[] args) {
 
-    final Text text1 = new Text("This is a test message", "Comment");
-    final Media media1 = new Media();
-    final Picture picture1 = new Picture(  5,7, 25);
-    final Audio audio1 = new Audio(34, true);
-    final Video video1 = new Video(54321, "AVI");
+    final Text text1 = new Text("Mary Key", "01.01.2020", "This is a new text about fast cars", "Post", false);
+    final Media media1 = new Media("Gary Key", "02.01.2020", "This is a new media", "Repost", 200);
+    final Picture picture1 = new Picture("Tom Key", "03.01.2020", "This is a pucture", "Comment", 300, 2, 4, 6);
+    final Audio audio1 = new Audio("Max Key", "04.01.2020", "This is an audio", "Post", 300, true);
+    final Video video1 = new Video("Kate Key", "05.01.2020", "This is a video", "Comment", 300, "AVI");
 
     //Text
     text1.maxMessageSizeInMb(10);
@@ -22,7 +22,7 @@ public class Main {
     //Picture
     picture1.maxMessageSizeInMb(12);
     picture1.displayContent();
-    picture1.square(6,6);
+    picture1.square(6, 6);
 
     //Audio
     audio1.maxMessageSizeInMb(3000);

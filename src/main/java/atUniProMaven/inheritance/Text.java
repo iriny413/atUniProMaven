@@ -2,22 +2,17 @@ package atUniProMaven.inheritance;
 
 public class Text extends BaseMessage {
 
-  private String author = "FirstName, LastName";
-  private String date = "dd.mm.yyyy";
-  private String message = "Message to be shown";
-  private String messageType = POST;
-  boolean copyRightProtected = true;
+  private boolean copyRightProtected = true;
 
   private static final String POST = "Post";
   private static final String REPOST = "Repost";
   private static final String COMMENT = "Comment";
 
 
-  public Text(String message, String messageType) {
-    this.message = message;
-    this.messageType = messageType;
+  public Text(String author, String date, String message, String messageType, boolean copyRightProtected) {
+    super(author, date, message, messageType);
+    this.copyRightProtected = copyRightProtected;
   }
-
 
   @Override
   String maxMessageSizeInMb(int size) {

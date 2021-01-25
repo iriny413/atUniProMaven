@@ -1,13 +1,11 @@
 package atUniProMaven.inheritance;
 
 public class Video extends Media {
-  private String author = "FirstName, LastName";
-  private String date = "dd.mm.yyyy";
-  private int size;
+
   private String format;
 
-  public Video(int size, String format) {
-    this.size = size;
+  public Video(String author, String date, String message, String messageType, int size, String format) {
+    super(author, date, message, messageType, size);
     this.format = format;
   }
 

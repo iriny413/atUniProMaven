@@ -1,20 +1,18 @@
 package atUniProMaven.inheritance;
 
 public class Picture extends Media {
-  private String author = "FirstName, LastName";
-  private String date = "dd.mm.yyyy";
-  private int size = 0;
+
   private int length;
   private int width;
   private int diagonal;
 
 
-  public Picture(int length, int width, int size) {
+  public Picture(String author, String date, String message, String messageType, int size, int length, int width, int diagonal) {
+    super(author, date, message, messageType, size);
     this.length = length;
     this.width = width;
-    this.size = size;
+    this.diagonal = diagonal;
   }
-
 
   @Override
   java.lang.String maxMessageSizeInMb(int size) {

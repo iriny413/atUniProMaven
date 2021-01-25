@@ -1,15 +1,17 @@
 package atUniProMaven.inheritance;
 
 public class Media extends BaseMessage {
-  private String author = "FirstName, LastName";
-  private String date = "dd.mm.yyyy";
-  private String message = "Message to be shown";
-  private String messageType = POST;
+
   private int size = 0;
 
   private static final String POST = "Post";
   private static final String REPOST = "Repost";
   private static final String COMMENT = "Comment";
+
+  public Media(String author, String date, String message, String messageType, int size) {
+    super(author, date, message, messageType);
+    this.size = size;
+  }
 
   @Override
   String maxMessageSizeInMb(int size) {

@@ -8,14 +8,21 @@ package atUniProMaven.inheritance;
  */
 public abstract class BaseMessage {
 
-  private String author = "FirstName, LastName";
-  private String date = "dd.mm.yyyy";
+  private String author = "Max, Mustermann";
+  private String date = "01.12.2010";
   private String message = "Message to be shown";
   private String messageType = POST;
 
   private static final String POST = "Post";
   private static final String REPOST = "Repost";
   private static final String COMMENT = "Comment";
+
+  public BaseMessage(String author, String date, String message, String messageType) {
+    this.author = author;
+    this.date = date;
+    this.message = message;
+    this.messageType = messageType;
+  }
 
   void displayContent() {
     System.out.println("BaseMessage. Author: " + author

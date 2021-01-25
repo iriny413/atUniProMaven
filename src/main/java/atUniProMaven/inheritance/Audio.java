@@ -1,15 +1,15 @@
 package atUniProMaven.inheritance;
 
 public class Audio extends Media {
-  private String author = "FirstName, LastName";
-  private String date = "dd.mm.yyyy";
-  private int size = 0;
+
   boolean highQualityFormat = false;
 
-  public Audio(int size, boolean highQualityFormat) {
-    this.size = size;
+
+  public Audio(String author, String date, String message, String messageType, int size, boolean highQualityFormat) {
+    super(author, date, message, messageType, size);
     this.highQualityFormat = highQualityFormat;
   }
+
 
   @Override
   String maxMessageSizeInMb(int size) {
