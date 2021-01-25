@@ -1,12 +1,12 @@
 package atUniProMaven.inheritance;
 
 public class Audio extends Media {
-  String author;
-  int date;
-  int size;
-  boolean highQualityFormat;
+  private String author = "FirstName, LastName";
+  private String date = "dd.mm.yyyy";
+  private int size = 0;
+  boolean highQualityFormat = false;
 
-  public Audio(int size, boolean highQualityFormat){
+  public Audio(int size, boolean highQualityFormat) {
     this.size = size;
     this.highQualityFormat = highQualityFormat;
   }
@@ -21,7 +21,6 @@ public class Audio extends Media {
   @Override
   void displayContent() {
     super.displayContent();
-    System.out.println("Size: " + size);
     System.out.println("High Quality Format: " + highQualityFormat);
   }
 

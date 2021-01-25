@@ -5,7 +5,7 @@ public class Main {
 
     final Text text1 = new Text("This is a test message", "Comment");
     final Media media1 = new Media();
-    final Picture picture1 = new Picture(  5,7);
+    final Picture picture1 = new Picture(  5,7, 25);
     final Audio audio1 = new Audio(34, true);
     final Video video1 = new Video(54321, "AVI");
 

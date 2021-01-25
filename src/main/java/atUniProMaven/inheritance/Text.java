@@ -1,23 +1,23 @@
 package atUniProMaven.inheritance;
 
-import java.util.Date;
+public class Text extends BaseMessage {
 
-public class Text extends Info {
+  private String author = "FirstName, LastName";
+  private String date = "dd.mm.yyyy";
+  private String message = "Message to be shown";
+  private String messageType = POST;
+  boolean copyRightProtected = true;
 
-  private String author;
-  private int date;
-  private String message;
-  private String messageType;
-  boolean copyRightProtected;
-
-  private static final String MYSELF_CREATED = "Post";
-  private static final String FORWARDED = "Repost";
+  private static final String POST = "Post";
+  private static final String REPOST = "Repost";
   private static final String COMMENT = "Comment";
 
-  public Text(String message, String messageType){
+
+  public Text(String message, String messageType) {
     this.message = message;
     this.messageType = messageType;
   }
+
 
   @Override
   String maxMessageSizeInMb(int size) {
@@ -26,14 +26,13 @@ public class Text extends Info {
     return result;
   }
 
+
   @Override
   void displayContent() {
-    System.out.println("Text - info. Author: " + author
-            + "; date: " + date
-            + "; message: " + message
-            + "; messageType: " + messageType
-            + "; copy right: " + copyRightProtected);
+    super.displayContent();
+    System.out.println("Copy right: " + copyRightProtected);
   }
+
 
   public void isCopyRightProtected(boolean b) {
     if(b) {

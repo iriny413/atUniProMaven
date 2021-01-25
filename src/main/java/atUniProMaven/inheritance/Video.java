@@ -1,11 +1,12 @@
 package atUniProMaven.inheritance;
 
 public class Video extends Media {
-  String author;
-  int size;
-  String format;
+  private String author = "FirstName, LastName";
+  private String date = "dd.mm.yyyy";
+  private int size;
+  private String format;
 
-  public Video(int size, String format){
+  public Video(int size, String format) {
     this.size = size;
     this.format = format;
   }
@@ -18,7 +19,6 @@ public class Video extends Media {
   @Override
   void displayContent() {
     super.displayContent();
-    System.out.println("Size: " + size);
     System.out.println("Video format: " + format);
   }
 
