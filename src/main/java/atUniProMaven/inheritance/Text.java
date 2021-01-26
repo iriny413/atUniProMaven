@@ -1,11 +1,11 @@
 package atUniProMaven.inheritance;
 
-public class Text extends BaseMessage {
+public class Text extends BaseMessage implements PrintInterface {
 
   private boolean copyRightProtected;
 
 
-  public Text(String author, String date, String message, String messageType, boolean copyRightProtected) {
+    public Text(String author, String date, String message, Dictionary.MessageType messageType, boolean copyRightProtected) {
     super(author, date, message, messageType);
     this.copyRightProtected = copyRightProtected;
   }
@@ -32,4 +32,8 @@ public class Text extends BaseMessage {
       System.out.println("Text is to be used in any way - no copy right");
     }
   }
+
+    public void printSomething() {
+        System.out.println("Text");
+    }
 }

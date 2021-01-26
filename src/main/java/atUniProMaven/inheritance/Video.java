@@ -1,10 +1,10 @@
 package atUniProMaven.inheritance;
 
-public class Video extends Media {
+public class Video extends Media implements PlayInterface {
 
   private String format;
 
-  public Video(String author, String date, String message, String messageType, int size, String format) {
+    public Video(String author, String date, String message, Dictionary.MessageType messageType, int size, String format) {
     super(author, date, message, messageType, size);
     this.format = format;
   }
@@ -31,4 +31,8 @@ public class Video extends Media {
     }
     return result;
   }
+
+    public void playSomething() {
+        System.out.println("This video is playing now");
+    }
 }

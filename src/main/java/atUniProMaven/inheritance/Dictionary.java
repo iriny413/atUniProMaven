@@ -1,7 +1,22 @@
 package atUniProMaven.inheritance;
 
 public class Dictionary {
-  public static final String POST = "Post";
-  public static final String REPOST = "Repost";
-  public static final String COMMENT = "Comment";
+
+    public enum MessageType {
+        POST("Post"),
+        REPOST("Repost"),
+        COMMENT("Comment"),
+        DIAGNOSIS_TEXT("Diagnosetext");
+
+        private String name;
+
+        MessageType(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
 }

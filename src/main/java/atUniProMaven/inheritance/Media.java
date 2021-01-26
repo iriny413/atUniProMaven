@@ -5,7 +5,7 @@ public class Media extends BaseMessage {
   private int size;
 
 
-  public Media(String author, String date, String message, String messageType, int size) {
+    public Media(String author, String date, String message, Dictionary.MessageType messageType, int size) {
     super(author, date, message, messageType);
     this.size = size;
   }
