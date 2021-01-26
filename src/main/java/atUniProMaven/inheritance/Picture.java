@@ -1,13 +1,13 @@
 package atUniProMaven.inheritance;
 
-public class Picture extends Media {
+public class Picture extends Media implements PrintInterface {
 
   private int length;
   private int width;
   private int diagonal;
 
 
-  public Picture(String author, String date, String message, String messageType, int size, int length, int width, int diagonal) {
+    public Picture(String author, String date, String message, Dictionary.MessageType messageType, int size, int length, int width, int diagonal) {
     super(author, date, message, messageType, size);
     this.length = length;
     this.width = width;
@@ -32,4 +32,8 @@ public class Picture extends Media {
     System.out.println("Picture's square: " + result);
     return result;
   }
+
+    public void printSomething() {
+        System.out.println("Picture");
+    }
 }

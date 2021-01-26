@@ -1,11 +1,11 @@
 package atUniProMaven.inheritance;
 
-public class Audio extends Media {
+public class Audio extends Media implements PlayInterface {
 
   boolean highQualityFormat;
 
 
-  public Audio(String author, String date, String message, String messageType, int size, boolean highQualityFormat) {
+    public Audio(String author, String date, String message, Dictionary.MessageType messageType, int size, boolean highQualityFormat) {
     super(author, date, message, messageType, size);
     this.highQualityFormat = highQualityFormat;
   }
@@ -31,4 +31,8 @@ public class Audio extends Media {
       System.out.println("Audio format is not high quality");
     }
   }
+
+    public void playSomething() {
+        System.out.println("This audio is playing now");
+    }
 }

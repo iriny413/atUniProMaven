@@ -11,9 +11,9 @@ public abstract class BaseMessage {
   private String author;
   private String date;
   private String message;
-  private String messageType;
+    private Dictionary.MessageType messageType;
 
-  public BaseMessage(String author, String date, String message, String messageType) {
+    public BaseMessage(String author, String date, String message, Dictionary.MessageType messageType) {
     this.author = author;
     this.date = date;
     this.message = message;
