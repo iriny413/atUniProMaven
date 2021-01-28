@@ -8,24 +8,24 @@ package atUniProMaven.inheritance;
  */
 public abstract class BaseMessage {
 
-  private String author;
-  private String date;
-  private String message;
-    private Dictionary.MessageType messageType;
+    private String author;
+    private String date;
+    private String message;
+    private MessageType messageType;
 
-    public BaseMessage(String author, String date, String message, Dictionary.MessageType messageType) {
-    this.author = author;
-    this.date = date;
-    this.message = message;
-    this.messageType = messageType;
-  }
+    public BaseMessage(String author, String date, String message, MessageType messageType) {
+        this.author = author;
+        this.date = date;
+        this.message = message;
+        this.messageType = messageType;
+    }
 
-  public void displayContent() {
-    System.out.println("BaseMessage. Author: " + author
-            + "; date: " + date
-            + "; message: " + message
-            + "; messageType: " + messageType);
-  }
+    public void displayContent() {
+        System.out.println("BaseMessage. Author: " + author
+                + "; date: " + date
+                + "; message: " + message
+                + "; messageType: " + messageType);
+    }
 
-  public abstract String maxMessageSizeInMb(int size);
+    public abstract String maxMessageSizeInMb(int size);
 }
