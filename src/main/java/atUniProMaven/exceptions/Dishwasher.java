@@ -1,6 +1,7 @@
 package atUniProMaven.exceptions;
 
 /**
+ * Задание:
  * Создать класс Dishwasher, который моделирует работу посудомоечной машины. Вы можете:
  * a.  загружать посуду по одному элементу (нельзя, если машина запущена либо чистая посуда не выгружена);
  * загрузить посуду можно, если позволяет вместимость
@@ -22,7 +23,6 @@ public class Dishwasher {
     private boolean isDishwasherEmpty;
     private boolean isCleanDishInside;
 
-
     public Dishwasher(int numberOfDishes, int maximumNumber, boolean isDishwasherWorking, boolean isDishwasherEmpty, boolean isCleanDishInside) {
         this.numberOfDishes = numberOfDishes;
         this.isDishwasherWorking = isDishwasherWorking;
@@ -34,6 +34,10 @@ public class Dishwasher {
             throw new IllegalArgumentException("Maximum number of dishes is exceeded");
         }
 
+        if(maximumNumber <= 0) {
+            throw new IllegalArgumentException("Maximum number of dishes can not be 0 or less than 0");
+        }
+
         if(numberOfDishes <= 0) {
             throw new IllegalArgumentException("Number of inserted dishes can not be 0 or less than 0");
         }
@@ -41,9 +45,9 @@ public class Dishwasher {
 
 
     /**
-     * загружать посуду по одному элементу (нельзя, если машина запущена либо чистая посуда не выгружена);
-     * * загрузить посуду можно, если позволяет вместимость
-     * * (задается в конструктуре и определяет макс кол-во загруженной посуды);
+     * This method is used to insert dishes (one by one) into the dishwasher;
+     * It's impossible to insert dishes if the dishwasher is working or if the clean dishes are inside the dishwasher;
+     * It's impossible to insert the number of dishes that exceeds the maximum number of allowed dishes;
      */
     public void insertDishes() {
         if(! isDishwasherWorking) {
@@ -62,14 +66,15 @@ public class Dishwasher {
     }
 
     /**
-     * b.  достать всю посуду;
+     * This method is used to take dishes out of the dishwasher;
      */
     public void takeDishesOut() {
         System.out.println("SUCCESS: dishes have been taken out");
     }
 
     /**
-     * c.  запустить машину (нельзя, если машина пустая либо чистая посуда не выгружена, либо уже запущена);
+     * This method is used to start the dishwasher
+     * Impossible to start the dishwasher if clean dishes are inside it or if it is working or empty;
      */
     public void startDishwasher() {
         if(! isDishwasherEmpty) {
@@ -88,7 +93,8 @@ public class Dishwasher {
     }
 
     /**
-     * d.  остановить работу машины (нельзя, если не запущена);
+     * This method is used to stop the dishwasher;
+     * Impossible to stop the dishwasher if it is working;
      */
     public void stopDishwasher() {
         if(! isDishwasherWorking) {
