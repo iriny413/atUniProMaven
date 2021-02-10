@@ -1,23 +1,17 @@
 package atUniProMaven.exceptions;
 
 public class Main {
-    public static void main(String[] args) throws DishwasherWorkingException, CleanDishesInsideException, EmptyDishwasherException {
+    public static void main(String[] args) throws DishwasherException {
 
-        final Dishwasher dishwasher1 = new Dishwasher(30, 40, false, false, true);
+        final Dishwasher dishwasher1 = new Dishwasher(3);
+
+        dishwasher1.stopDishwasher();
+        dishwasher1.takeDishesOut();
 
         dishwasher1.insertDishes();
-
-        dishwasher1.setDishwasherWorking(true);
-        dishwasher1.insertDishes();
-
         dishwasher1.insertDishes();
         dishwasher1.insertDishes();
 
         dishwasher1.startDishwasher();
-
-        dishwasher1.stopDishwasher();
-        dishwasher1.stopDishwasher();
-
-        dishwasher1.takeDishesOut();
     }
 }
