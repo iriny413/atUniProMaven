@@ -5,8 +5,8 @@ public class Text extends BaseMessage implements PrintInterface {
   private boolean copyRightProtected;
 
 
-    public Text(String author, String date, String message, Dictionary.MessageType messageType, boolean copyRightProtected) {
-    super(author, date, message, messageType);
+    public Text(String author, String date, String message, MessageType messageType, boolean copyRightProtected) {
+        super(author, date, message, MessageType.COMMENT);
     this.copyRightProtected = copyRightProtected;
   }
 

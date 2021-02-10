@@ -24,7 +24,7 @@ public class Task1 {
             myArray[i] = scanner.nextInt();
         }
 
-        // 4. Print the array to the console:
+        // 4. PrintInterface the array to the console:
         for (int i = 0; i < myArray.length; i++) {
             System.out.print(myArray[i] + " ");
         }
