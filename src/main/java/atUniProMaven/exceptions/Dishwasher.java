@@ -1,5 +1,8 @@
 package atUniProMaven.exceptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Задание:
  * Создать класс Dishwasher, который моделирует работу посудомоечной машины. Вы можете:
@@ -20,13 +23,14 @@ public class Dishwasher {
     private int numberOfDishes;
     private int maximumNumber;
     private Status status = Status.EMPTY;
+    private DishType dishType;
+    List<DishType> dishes = new ArrayList<DishType>();
 
     public Dishwasher(int maximumNumber) {
-        this.maximumNumber = maximumNumber;
-
         if(maximumNumber <= 0) {
             throw new IllegalArgumentException("Maximum number of dishes can not be 0 or less than 0");
         }
+        this.maximumNumber = maximumNumber;
     }
 
 
@@ -36,18 +40,22 @@ public class Dishwasher {
      * or if the clean dishes are inside the dishwasher;
      * It's impossible to insert the number of dishes that exceeds the maximum number of allowed dishes;
      */
-    public void insertDishes() throws DishwasherException {
+    public void insertDishes(DishType currentDishType) throws DishwasherException {
         if(numberOfDishes > maximumNumber - 1) {
             throw new IllegalArgumentException("Maximum number of dishes is exceeded");
         }
-        if(status.equals(Status.WORKING)) {
+        if(status == Status.WORKING) {
             throw new DishwasherException("FAILURE: Dishwasher is working!");
         }
-        if(status.equals(Status.CLEAN_DISHES_INSIDE)) {
+        if(status == Status.CLEAN_DISHES_INSIDE) {
             throw new DishwasherException("FAILURE: Clean dishes are inside of the dishwasher");
         }
-        numberOfDishes += 1;
-        System.out.println("SUCCESS: Dish has been inserted - number of dishes is " + numberOfDishes);
+
+        dishType = currentDishType;
+        dishes.add(dishType);
+
+        //numberOfDishes += 1;
+        System.out.println("SUCCESS: Dish has been inserted - number of dishes is " + dishes);
 
         status = Status.DIRTY_DISHES_INSIDE;
         System.out.println("STATUS: Dirty dishes are inside");
@@ -57,11 +65,22 @@ public class Dishwasher {
     /**
      * This method is used to take dishes out of the dishwasher;
      */
-    public void takeDishesOut() {
-        System.out.println("SUCCESS: Dishes have been taken out");
+    public List<DishType> takeDishesOut() {
+        if(status == Status.WORKING) {
+            throw new DishwasherException("FAILURE: Dishwasher is working!");
+        }
+        if(status == Status.EMPTY) {
+            throw new DishwasherException("FAILURE: Dishwasher is empty");
+        }
+        if(dishes.size() <= 0) {
+            throw new DishwasherException("FAILURE: Type of dishes is not specified");
+        }
+
+        System.out.println("SUCCESS: Dishes have been taken out " + dishes);
 
         status = Status.EMPTY;
         System.out.println("STATUS: Dishwasher is empty");
+        return dishes;
     }
 
 
@@ -70,13 +89,13 @@ public class Dishwasher {
      * Impossible to start the dishwasher if clean dishes are inside of it or if it's working or it's empty;
      */
     public void startDishwasher() throws DishwasherException {
-        if(status.equals(Status.EMPTY)) {
+        if(status == Status.EMPTY) {
             throw new DishwasherException("FAILURE: Dishwasher is empty");
         }
-        if(status.equals(Status.CLEAN_DISHES_INSIDE)) {
+        if(status == Status.CLEAN_DISHES_INSIDE) {
             throw new DishwasherException("FAILURE: Clean dishes are inside of the dishwasher");
         }
-        if(status.equals(Status.WORKING)) {
+        if(status == Status.WORKING) {
             throw new DishwasherException("FAILURE: Dishwasher is working!");
         }
         System.out.println("SUCCESS: Dishwasher has been started");
@@ -91,7 +110,7 @@ public class Dishwasher {
      * Impossible to stop the dishwasher if it is working;
      */
     public void stopDishwasher() throws DishwasherException {
-        if(status.equals(Status.WORKING)) {
+        if(status == Status.NOT_WORKING) {
             throw new DishwasherException("FAILURE: Dishwasher is working!");
         }
         System.out.println("SUCCESS: Dishwasher has been stopped");
