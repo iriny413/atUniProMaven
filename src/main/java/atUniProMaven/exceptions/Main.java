@@ -3,7 +3,7 @@ package atUniProMaven.exceptions;
 public class Main {
     public static void main(String[] args) throws DishwasherException {
 
-        final Dishwasher dishwasher1 = new Dishwasher(3);
+        final Dishwasher dishwasher1 = new Dishwasher(2);
 
         dishwasher1.stopDishwasher();
 

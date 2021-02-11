@@ -20,7 +20,6 @@ import java.util.List;
 
 public class Dishwasher {
 
-    private int numberOfDishes;
     private int maximumNumber;
     private Status status = Status.EMPTY;
     private DishType dishType;
@@ -41,20 +40,16 @@ public class Dishwasher {
      * It's impossible to insert the number of dishes that exceeds the maximum number of allowed dishes;
      */
     public void insertDishes(DishType currentDishType) throws DishwasherException {
-        if(numberOfDishes > maximumNumber - 1) {
+        if(dishes.size() > maximumNumber - 1) {
             throw new IllegalArgumentException("Maximum number of dishes is exceeded");
         }
-        if(status == Status.WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher is working!");
-        }
-        if(status == Status.CLEAN_DISHES_INSIDE) {
-            throw new DishwasherException("FAILURE: Clean dishes are inside of the dishwasher");
+        if(status == Status.WORKING || status == Status.CLEAN_DISHES_INSIDE) {
+            throw new DishwasherException("FAILURE: Dishwasher is working or clean dishes are inside of the dishwasher");
         }
 
         dishType = currentDishType;
         dishes.add(dishType);
 
-        //numberOfDishes += 1;
         System.out.println("SUCCESS: Dish has been inserted - number of dishes is " + dishes);
 
         status = Status.DIRTY_DISHES_INSIDE;
@@ -64,13 +59,11 @@ public class Dishwasher {
 
     /**
      * This method is used to take dishes out of the dishwasher;
+     * It's impossible to take dishes out if the dishwasher is working or empty
      */
     public List<DishType> takeDishesOut() {
-        if(status == Status.WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher is working!");
-        }
-        if(status == Status.EMPTY) {
-            throw new DishwasherException("FAILURE: Dishwasher is empty");
+        if(status == Status.WORKING || status == Status.EMPTY) {
+            throw new DishwasherException("FAILURE: Dishwasher is working or empty");
         }
         if(dishes.size() <= 0) {
             throw new DishwasherException("FAILURE: Type of dishes is not specified");
@@ -89,14 +82,8 @@ public class Dishwasher {
      * Impossible to start the dishwasher if clean dishes are inside of it or if it's working or it's empty;
      */
     public void startDishwasher() throws DishwasherException {
-        if(status == Status.EMPTY) {
-            throw new DishwasherException("FAILURE: Dishwasher is empty");
-        }
-        if(status == Status.CLEAN_DISHES_INSIDE) {
-            throw new DishwasherException("FAILURE: Clean dishes are inside of the dishwasher");
-        }
-        if(status == Status.WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher is working!");
+        if(status == Status.EMPTY || status == Status.CLEAN_DISHES_INSIDE || status == Status.WORKING) {
+            throw new DishwasherException("FAILURE: Dishwasher is working or empty or clean dishes are inside of it!");
         }
         System.out.println("SUCCESS: Dishwasher has been started");
 
