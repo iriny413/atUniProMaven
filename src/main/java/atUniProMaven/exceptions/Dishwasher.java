@@ -1,7 +1,6 @@
 package atUniProMaven.exceptions;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Задание:
@@ -22,8 +21,7 @@ public class Dishwasher {
 
     private int maximumNumber;
     private Status status = Status.EMPTY;
-    private DishType dishType;
-    List<DishType> dishes = new ArrayList<DishType>();
+    DishType dishes[] = new DishType[5];
 
     public Dishwasher(int maximumNumber) {
         if(maximumNumber <= 0) {
@@ -39,21 +37,20 @@ public class Dishwasher {
      * or if the clean dishes are inside the dishwasher;
      * It's impossible to insert the number of dishes that exceeds the maximum number of allowed dishes;
      */
-    public void insertDishes(DishType currentDishType) throws DishwasherException {
-        if(dishes.size() > maximumNumber - 1) {
+    public void insertDishes(DishType currentDishType, int n) throws DishwasherException {
+        if(maximumNumber > dishes.length) {
             throw new IllegalArgumentException("Maximum number of dishes is exceeded");
         }
         if(status == Status.WORKING || status == Status.CLEAN_DISHES_INSIDE) {
-            throw new DishwasherException("FAILURE: Dishwasher is working or clean dishes are inside of the dishwasher");
+            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
         }
 
-        dishType = currentDishType;
-        dishes.add(dishType);
+        dishes[n] = currentDishType;
 
-        System.out.println("SUCCESS: Dish has been inserted - number of dishes is " + dishes);
+        System.out.println("SUCCESS: Dish has been inserted - " + dishes[n]);
 
         status = Status.DIRTY_DISHES_INSIDE;
-        System.out.println("STATUS: Dirty dishes are inside");
+        System.out.println("STATUS: Dishwasher " + status.getName());
     }
 
 
@@ -61,18 +58,14 @@ public class Dishwasher {
      * This method is used to take dishes out of the dishwasher;
      * It's impossible to take dishes out if the dishwasher is working or empty
      */
-    public List<DishType> takeDishesOut() {
+    public DishType[] takeDishesOut() {
         if(status == Status.WORKING || status == Status.EMPTY) {
-            throw new DishwasherException("FAILURE: Dishwasher is working or empty");
+            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
         }
-        if(dishes.size() <= 0) {
-            throw new DishwasherException("FAILURE: Type of dishes is not specified");
-        }
-
-        System.out.println("SUCCESS: Dishes have been taken out " + dishes);
+        System.out.println("SUCCESS: Dishes have been taken out " + Arrays.toString(dishes));
 
         status = Status.EMPTY;
-        System.out.println("STATUS: Dishwasher is empty");
+        System.out.println("STATUS: Dishwasher " + status.getName());
         return dishes;
     }
 
@@ -83,12 +76,12 @@ public class Dishwasher {
      */
     public void startDishwasher() throws DishwasherException {
         if(status == Status.EMPTY || status == Status.CLEAN_DISHES_INSIDE || status == Status.WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher is working or empty or clean dishes are inside of it!");
+            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
         }
         System.out.println("SUCCESS: Dishwasher has been started");
 
         status = Status.WORKING;
-        System.out.println("STATUS: Dishwasher is working");
+        System.out.println("STATUS: Dishwasher " + status.getName());
     }
 
 
@@ -98,11 +91,11 @@ public class Dishwasher {
      */
     public void stopDishwasher() throws DishwasherException {
         if(status == Status.NOT_WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher is working!");
+            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
         }
         System.out.println("SUCCESS: Dishwasher has been stopped");
 
         status = Status.NOT_WORKING;
-        System.out.println("STATUS: Dishwasher is NOT working");
+        System.out.println("STATUS: Dishwasher " + status.getName());
     }
 }
