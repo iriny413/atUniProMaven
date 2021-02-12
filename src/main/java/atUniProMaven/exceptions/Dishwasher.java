@@ -21,7 +21,8 @@ public class Dishwasher {
 
     private int maximumNumber;
     private Status status = Status.EMPTY;
-    DishType dishes[] = new DishType[5];
+    DishType dishes[] = new DishType[0];
+
 
     public Dishwasher(int maximumNumber) {
         if(maximumNumber <= 0) {
@@ -37,19 +38,22 @@ public class Dishwasher {
      * or if the clean dishes are inside the dishwasher;
      * It's impossible to insert the number of dishes that exceeds the maximum number of allowed dishes;
      */
-    public void insertDishes(DishType currentDishType, int n) throws DishwasherException {
-        if(maximumNumber > dishes.length) {
-            throw new IllegalArgumentException("Maximum number of dishes is exceeded");
+    public void insertDishes(DishType currentDishType) throws DishwasherException {
+
+        if(dishes.length + 1 > maximumNumber) {
+            throw new IllegalArgumentException("Maximum number of dishes (" + maximumNumber + ") is exceeded");
         }
         if(status == Status.WORKING || status == Status.CLEAN_DISHES_INSIDE) {
-            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
+            throw new DishwasherException("FAILURE: Impossible to insert dishes because the dishwasher " + status.getName());
         }
 
-        dishes[n] = currentDishType;
+        dishes = Arrays.copyOf(dishes, dishes.length + 1);
+        dishes[dishes.length - 1] = currentDishType;
 
-        System.out.println("SUCCESS: Dish has been inserted - " + dishes[n]);
+        System.out.println("SUCCESS: Dish has been inserted - " + dishes[dishes.length - 1] +
+                ". The total number of inserted dishes is " + (dishes.length));
 
-        status = Status.DIRTY_DISHES_INSIDE;
+        status = Status.NOT_WORKING;
         System.out.println("STATUS: Dishwasher " + status.getName());
     }
 
@@ -60,12 +64,16 @@ public class Dishwasher {
      */
     public DishType[] takeDishesOut() {
         if(status == Status.WORKING || status == Status.EMPTY) {
-            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
+            throw new DishwasherException("FAILURE: Impossible to take dishes out because the dishwasher " + status.getName());
+        }
+        if((dishes.length == 0)) {
+            throw new DishwasherException("FAILURE: Impossible to take dishes out - the dishwasher " + Status.EMPTY.getName());
         }
         System.out.println("SUCCESS: Dishes have been taken out " + Arrays.toString(dishes));
 
         status = Status.EMPTY;
         System.out.println("STATUS: Dishwasher " + status.getName());
+        dishes = Arrays.copyOf(dishes, 0);
         return dishes;
     }
 
@@ -76,7 +84,7 @@ public class Dishwasher {
      */
     public void startDishwasher() throws DishwasherException {
         if(status == Status.EMPTY || status == Status.CLEAN_DISHES_INSIDE || status == Status.WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
+            throw new DishwasherException("FAILURE: Impossible to start the dishwasher because it " + status.getName());
         }
         System.out.println("SUCCESS: Dishwasher has been started");
 
@@ -90,12 +98,12 @@ public class Dishwasher {
      * Impossible to stop the dishwasher if it is working;
      */
     public void stopDishwasher() throws DishwasherException {
-        if(status == Status.NOT_WORKING) {
-            throw new DishwasherException("FAILURE: Dishwasher " + status.getName());
+        if(status == Status.NOT_WORKING || status == Status.EMPTY) {
+            throw new DishwasherException("FAILURE: Impossible to stop the dishwasher because it " + status.getName());
         }
         System.out.println("SUCCESS: Dishwasher has been stopped");
 
-        status = Status.NOT_WORKING;
+        status = Status.CLEAN_DISHES_INSIDE;
         System.out.println("STATUS: Dishwasher " + status.getName());
     }
 }
