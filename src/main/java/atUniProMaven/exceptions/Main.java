@@ -11,5 +11,6 @@ public class Main {
         dishwasher1.startDishwasher();
         dishwasher1.stopDishwasher();
         dishwasher1.takeDishesOut();
+        dishwasher1.insertDishes(DishType.CUP);
     }
 }
