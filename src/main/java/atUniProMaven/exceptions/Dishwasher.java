@@ -21,7 +21,7 @@ public class Dishwasher {
 
     private int maximumNumber;
     private Status status = Status.EMPTY;
-    private DishType dishes[];
+    private DishType[] dishes;
     private int counter;
 
     public Dishwasher(int maximumNumber) {
@@ -60,7 +60,7 @@ public class Dishwasher {
      * This method is used to take dishes out of the dishwasher;
      * It's impossible to take dishes out if the dishwasher is working or empty
      */
-    public void takeDishesOut() {
+    public DishType[] takeDishesOut() {
         if(status == Status.WORKING || status == Status.EMPTY) {
             throw new DishwasherException("FAILURE: Impossible to take dishes out because the dishwasher " + status.getName());
         }
@@ -72,6 +72,7 @@ public class Dishwasher {
         status = Status.EMPTY;
         System.out.println("STATUS: Dishwasher " + status.getName());
         counter = 0;
+        return dishes;
     }
 
     /**
