@@ -43,11 +43,11 @@ public class Dishwasher {
         if(status == Status.WORKING || status == Status.CLEAN_DISHES_INSIDE) {
             throw new DishwasherException("FAILURE: Impossible to insert dishes because the dishwasher " + status.getName());
         }
-        counter += 1;
-        if(counter > maximumNumber) {
+        if(counter >= maximumNumber) {
             throw new IndexOutOfBoundsException("Maximum number of dishes (" + maximumNumber + ") is exceeded");
         }
-        dishes[counter - 1] = currentDishType;
+        dishes[counter] = currentDishType;
+        counter += 1;
 
         System.out.println("SUCCESS: Dish has been inserted - " + dishes[counter - 1] +
                 ". The total number of inserted dishes is " + (counter));
