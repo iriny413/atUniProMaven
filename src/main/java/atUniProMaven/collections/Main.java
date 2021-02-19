@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static atUniProMaven.collections.UserServices.commonSet;
-
 /**
  * Создайте класс с 2 полями, который будет использоваться при работе с коллекциями(н-р, класс User с полями age, name).
  * <p>
@@ -27,7 +25,9 @@ import static atUniProMaven.collections.UserServices.commonSet;
  */
 
 public class Main {
+
     public static void main(String[] args) {
+        UserServices userServices = new UserServices();
 
         User user1 = new User("Ivanov", 20);
         User user2 = new User("Petrov", 19);
@@ -44,7 +44,7 @@ public class Main {
         list2.add(user4);
         System.out.println("This is the list #2: " + list2);
 
-        List<User> listCommon = UserServices.commonList(list1, list2);
+        List<User> listCommon = userServices.commonList(list1, list2);
         System.out.println("The common list: " + listCommon);
 
         Set<User> set1 = new HashSet<User>();
@@ -54,7 +54,7 @@ public class Main {
         set2.add(user3);
         set2.add(user4);
 
-        Set<User> setCommon = commonSet(set1, set2);
+        Set<User> setCommon = userServices.commonSet(set1, set2);
         System.out.println("The common set: " + setCommon);
 
         /**
