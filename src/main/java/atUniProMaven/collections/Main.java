@@ -1,8 +1,13 @@
 package atUniProMaven.collections;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import static atUniProMaven.collections.User.commonSet;
+import static atUniProMaven.collections.UserServices.commonSet;
 
 /**
  * Создайте класс с 2 полями, который будет использоваться при работе с коллекциями(н-р, класс User с полями age, name).
@@ -39,7 +44,7 @@ public class Main {
         list2.add(user4);
         System.out.println("This is the list #2: " + list2);
 
-        List<User> listCommon = User.commonList(list1, list2);
+        List<User> listCommon = UserServices.commonList(list1, list2);
         System.out.println("The common list: " + listCommon);
 
         Set<User> set1 = new HashSet<User>();
@@ -86,21 +91,37 @@ public class Main {
         /**
          * 5.  Создайте HashMap с несколькими элементами (используя дубликаты) и проитерируйтесь по нему,
          *  выводя на консоль информацию в виде:
-         *  a.  итерация по значениям: <значение>
-         *  b.  итерация по ключам: <ключ>: <значение>
-         *  c.  итерация по парам: <ключ>: <значение>
+         *   a.  итерация по значениям: <значение>
+         *   b.  итерация по ключам: <ключ>: <значение>
+         *   c.  итерация по парам: <ключ>: <значение>
          */
         Map<Integer, User> map = new HashMap<Integer, User>();
-        map.put(0, user1);
-        map.put(1, user2);
+        map.put(1, user1);
         map.put(2, user2);
-        map.put(3, user4);
+        map.put(3, user2);
+        map.put(4, user4);
 
         System.out.println("HashMap with duplicated users");
-        for(int i = 0; i < map.size(); i++) {
-            User user = map.get(i);
-            System.out.println(user);
-            System.out.println(i + ": " + user);
+
+        //a.  итерация по значениям: <значение>
+        System.out.println("A: iterate by values");
+        for(User value : map.values()) {
+            System.out.println("User = " + value);
+        }
+        System.out.println();
+
+
+        //B: итерация по ключам: <ключ>: <значение>
+        System.out.println("A: iterate by key");
+        for(Integer key : map.keySet()) {
+            System.out.println("ID = " + key + ", User = " + map.get(key));
+        }
+        System.out.println();
+
+        //C: итерация по парам: <ключ>: <значение>
+        System.out.println("A: iterate by pairs: key - value");
+        for(Map.Entry<Integer, User> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
         }
     }
 }
