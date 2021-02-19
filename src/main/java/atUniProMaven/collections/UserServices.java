@@ -14,7 +14,6 @@ public class UserServices {
      * @return a list of objects that are common for list 1 & list 2
      */
     public static List<User> commonList(List<User> list1, List<User> list2) {
-
         List<User> commonElements = new ArrayList<User>();
         for(User e1 : list1) {
             if(list2.contains(e1)) {
@@ -33,7 +32,6 @@ public class UserServices {
      * @return a list of objects that are common for set 1 & set 2
      */
     public static Set<User> commonSet(Set<User> set1, Set<User> set2) {
-
         Set<User> commonElements = new HashSet<User>();
         for(User e1 : set1) {
             if(set2.contains(e1)) {
